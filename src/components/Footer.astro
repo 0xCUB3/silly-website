@@ -1,0 +1,52 @@
+---
+import Social from './Social.astro';
+const currentYear = new Date().getFullYear();
+---
+
+<footer>
+  <div class="social-links">
+  <Social platform="GitHub" username="0xcub3" />
+  </div>
+  <p>&copy; {currentYear} Alexander Skula. Made with &lt;3</p>
+</footer>
+
+<style>
+  footer {
+    padding: 2rem 1rem 1.5rem; /* Reduced top padding */
+    margin-top: auto; 
+    text-align: center;
+    color: var(--text-color-muted, #777); /* Use variable or fallback */
+    font-size: 0.8rem; /* Even smaller font */
+    width: 100%;
+    max-width: 1024px; 
+    margin-left: auto; /* Center the block */
+    margin-right: auto; /* Center the block */
+  }
+
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.8rem; /* Slightly more space between icons */
+    margin-bottom: 1.2rem; 
+  }
+
+  .heart {
+    color: var(--orange-cream); /* Or var(--deep-orange) for more pop */
+    display: inline-block; /* Allows for potential future animation/transform */
+    font-size: 0.9rem; /* Slightly larger heart */
+  }
+
+  footer p {
+    margin: 0;
+  }
+
+  /* Ensure social links use the footer color */
+  .social-links :global(.social-link) { 
+     color: #888;
+     transition: color 0.3s ease;
+  }
+  .social-links :global(.social-link:hover) {
+     color: var(--deep-orange);
+  }
+
+</style>

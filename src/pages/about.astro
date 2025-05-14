@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageTitle = "About Me";
+const pageDescription = "Learn more about the creator of this website.";
+---
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <div class="page-content">
+    <h1>About Me</h1>
+    <p>This is where I tell you all about myself and the purpose of this beautifully styled website.</p>
+    <p>I am passionate about web development, clean design, and smooth user experiences. This site is a playground for exploring Astro and modern CSS techniques.</p>
+
+    <h2>My Skills</h2>
+    <ul>
+      <li>Astro Framework</li>
+      <li>Modern CSS & Animations</li>
+      <li>Minimalist Design Principles</li>
+      <li>JavaScript/TypeScript</li>
+    </ul>
+    
+    <img src="/profile.jpg" alt="Alexander Skula Avatar" class="avatar"> 
+  </div>
+
+  <style>
+    /* Styles for this page are scoped and will apply to elements within this file */
+    ul {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 1rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    li {
+      background-color: var(--orange-cream);
+      padding: 0.75rem 1.25rem;
+      margin-bottom: 0.5rem;
+      border-radius: var(--border-radius);
+      border-left: 4px solid var(--deep-orange);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      text-align: left;
+    }
+    li:hover {
+      transform: translateX(5px);
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+            }
+    .avatar {
+       display: block;
+       margin: 2rem auto; 
+       width: 150px;
+       height: 150px;
+       border-radius: 50%;
+       object-fit: cover;
+            }
+        </style>
+</BaseLayout>

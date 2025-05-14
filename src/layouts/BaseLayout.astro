@@ -1,0 +1,187 @@
+---
+// import Navigation from '../components/Navigation.astro'; // Removed
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+export interface Props {
+    title: string;
+    description?: string;
+}
+
+const { title, description = "My Awesome Astro Website" } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content={description}>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" /> 
+    <title>{title}</title>
+    <style is:global>
+        /* Global body styles */
+        body {
+            opacity: 0;
+            animation: fadeIn 0.3s ease-out forwards;
+            display: flex; 
+            flex-direction: column;
+            min-height: calc(100vh - 10px); 
+            padding-top: 80px; /* Add padding to prevent content jumping under fixed header */
+        }
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        
+        /* Auto-hiding header styles */
+        .site-header {
+            position: fixed; /* Fixed position */
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background-color: rgba(253, 245, 236, 0.85); /* Slightly transparent background */
+            backdrop-filter: blur(10px); /* Blur effect */
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.08);
+
+            /* Initial hidden state */
+            opacity: 0;
+            transform: translateY(-100%);
+            transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+            
+            /* Inner alignment */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 2rem; /* Adjusted padding */
+            width: 100%; 
+        }
+
+        .site-header.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Make logo/contact visible immediately if header is shown */
+        .site-header .site-logo a {
+            /* Remove initial animation delays if they existed */
+            animation: none; /* Override previous fade-ins */
+            opacity: 1; 
+            transform: none;
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 600;
+        }
+        
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem; /* Gap between nav items */
+        }
+
+        .header-nav a {
+            text-decoration: none;
+            color: var(--dark-text); /* Same as logo for consistency */
+            font-size: 0.9rem; /* Slightly smaller */
+            font-weight: 500; /* Medium weight */
+            opacity: 0.75; /* Slightly less prominent */
+            transition: opacity 0.2s ease, color 0.2s ease;
+        }
+
+        .header-nav a:hover {
+            opacity: 1;
+            color: var(--deep-orange);
+        }
+
+        .nav-separator {
+            font-size: 0.8rem;
+            color: var(--dark-text);
+            opacity: 0.4;
+        }
+
+        .header-nav .contact-link { /* Styles for the original contact button, now a link */
+            opacity: 1; /* Full opacity for contact link */
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            background-color: var(--light-gray);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .header-nav .contact-link:hover {
+            background-color: var(--deep-orange);
+            color: white;
+            border-color: var(--deep-orange);
+            transform: translateY(-2px);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    {/* Header will be controlled by JS */}
+    <header class="site-header">
+        <div class="site-logo">
+            <a href="/"><strong>LOW-TECH</strong></a> 
+        </div>
+        <nav class="header-nav">
+            <a href="/about">About</a>
+            <span class="nav-separator">•</span>
+            <a href="/blog">Blog</a>
+            <span class="nav-separator">•</span>
+            <a href="/contact" class="contact-link">Contact</a> 
+        </nav>
+    </header>
+    
+    <slot /> { /* Direct slot, pages manage their own centering/layout */ }
+
+    <Footer /> { /* Always render footer */ }
+    
+    <script>
+      let lastScrollY = window.scrollY;
+      const header = document.querySelector('.site-header') as HTMLElement | null;
+      const scrollThreshold = 50; // Pixels to scroll before showing header
+      const hoverThreshold = 80; // Pixels from top edge for hover trigger
+      let isMouseNearTop = false;
+      let isScrolledDown = window.scrollY > scrollThreshold;
+
+      const updateHeaderVisibility = () => {
+        if (!header) return;
+        if (isScrolledDown || isMouseNearTop) {
+          header.classList.add('is-visible');
+        } else {
+          header.classList.remove('is-visible');
+        }
+      };
+
+      const handleScroll = () => {
+        const currentScrollY = window.scrollY;
+        isScrolledDown = currentScrollY > scrollThreshold;
+        updateHeaderVisibility();
+        lastScrollY = currentScrollY;
+      };
+
+      const handleMouseMove = (event: MouseEvent) => {
+        isMouseNearTop = event.clientY < hoverThreshold;
+        updateHeaderVisibility();
+      };
+
+      // Add listeners only if header exists
+      if(header) {
+         window.addEventListener('scroll', handleScroll, { passive: true });
+         document.addEventListener('mousemove', handleMouseMove);
+         // Initial check
+         handleScroll(); 
+         // We don't check mouse initial position, wait for movement
+      }
+      
+      // Basic cleanup example 
+      // window.addEventListener('unload', () => {
+      //    if(header) { 
+      //       window.removeEventListener('scroll', handleScroll);
+      //       document.removeEventListener('mousemove', handleMouseMove);
+      //    }
+      // });
+    </script>
+</body>
+</html> 

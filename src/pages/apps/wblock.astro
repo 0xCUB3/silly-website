@@ -1,0 +1,85 @@
+---
+import AppLayout from '../../layouts/AppLayout.astro';
+
+const appDetails = {
+  appName: "wBlock",
+  appIcon: "/icons/wblock.png",
+  tagline: "The next-generation ad blocker for Safari.",
+  version: "v0.2.0 Beta",
+  testflightUrl: "https://testflight.apple.com/join/DFGenhRn",
+  sourceCodeUrl: "https://github.com/0xCUB3/wBlock",
+  license: "GPL-3.0",
+  compatibility: "macOS 14 (Sonoma) or later"
+};
+---
+
+<AppLayout 
+  appName={appDetails.appName} 
+  appIcon={appDetails.appIcon} 
+  logoSrc="/your-main-logo.svg"
+  pageTitle={`${appDetails.appName} - ${appDetails.tagline}`}>
+
+  <div class="app-landing-content">
+    <section class="hero">
+      <img src={appDetails.appIcon} alt={`${appDetails.appName} icon`} class="app-icon-main" />
+      <h1>{appDetails.appName}</h1>
+      <p class="tagline">{appDetails.tagline}</p>
+      
+      <div class="action-buttons">
+        <a href={appDetails.testflightUrl} target="_blank" rel="noopener noreferrer" class="button primary-action">
+          Join TestFlight <span class="version">{appDetails.version}</span>
+        </a>
+      </div>
+      <div class="sub-links">
+         <!-- Can add changelog link here if desired -->
+         <!-- <a href="#">Changelog</a> -->
+      </div>
+      
+      <a href={appDetails.sourceCodeUrl} target="_blank" rel="noopener noreferrer" class="source-code-link">
+        Source code <span class="license">Licensed under {appDetails.license}</span>
+      </a>
+      <p class="compatibility">Compatible with {appDetails.compatibility}</p>
+    </section>
+
+    <!-- Hero Showcase Image -->
+    <section class="hero-showcase">
+        <img src="https://github.com/user-attachments/assets/a37e03b0-68d6-4a4b-b00a-f88da28f144c" alt="wBlock App Screenshot showing filter management" loading="lazy" /> 
+    </section>
+
+    <section class="features">      
+      <!-- Standard Feature Item with Image -->
+      <div class="feature-item">
+        <img src="https://github.com/user-attachments/assets/d83e7bad-6240-46e7-94d3-cf7af8be51c5" alt="Illustration showing ads blocked" class="feature-image" loading="lazy" /> 
+        <div class="feature-text">
+          <h3>Comprehensive Blocking</h3>
+          <p>Blocks ads, trackers, and malware using optimized AdGuard filters and more, ensuring a clean and private browsing experience.</p>
+        </div>
+      </div>
+
+      <!-- Side-by-Side Text Features -->
+      <div class="feature-text-group">
+          
+          <!-- Feature 1: Advanced Script Injection (No Image) -->
+          <div class="feature-text-item">
+            <h3>Advanced Script Injection</h3>
+            <p>Goes beyond simple blocking with script injection to handle complex cases like YouTube ads, providing a truly uninterrupted experience.</p>
+          </div>
+
+          <!-- Feature 2: More Features List (No Image) -->
+          <div class="feature-text-item">
+            <h3>More Features:</h3>
+            <ul>
+                <li>Custom Filter Support</li>
+                <li>Minimal RAM Usage</li>
+                <li>Intuitive category-based filter management</li>
+                <li>Individual filter list toggling</li>
+                <li>Automatic updates for filter lists (coming soon!)</li>
+                <li>Detailed logging for troubleshooting</li>
+            </ul>
+          </div>
+
+      </div>
+    </section>
+  </div>
+
+</AppLayout> 

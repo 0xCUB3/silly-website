@@ -1,0 +1,316 @@
+/* Styles for app landing page content sections */
+
+.app-landing-content {
+  padding: 1rem 0;
+}
+
+.hero {
+  text-align: center;
+  padding: 3rem 0;
+  /* border-bottom: 1px solid var(--border-color, #eee); */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  margin-bottom: 3.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.hero > * {
+  margin-bottom: 1.2rem;
+}
+.hero h1 {
+  font-size: 2.8rem;
+  margin-bottom: 0.3rem;
+  color: var(--dark-text);
+}
+.tagline {
+  font-size: 1.25rem;
+  color: #666;
+  margin-bottom: 2rem;
+  max-width: 550px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 0.8rem;
+}
+
+/* General button styling within app layout context */
+.button {
+  padding: 0.8rem 1.8rem; 
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  font-size: 0.95rem;
+  display: inline-block;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+.button .version, .button .price {
+  font-size: 0.8em;
+  opacity: 0.8;
+  margin-left: 0.3em;
+}
+.button.primary-action {
+  background-color: var(--deep-orange, #FF7043);
+  color: white;
+  border-color: var(--deep-orange, #FF7043);
+}
+.button.primary-action:hover {
+  background-color: #e65100;
+  border-color: #e65100;
+}
+.button.primary-action.large {
+    font-size: 1.1rem;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+}
+.button.secondary-action {
+  background-color: #f0f0f0;
+  color: var(--dark-text, #333);
+  border: 1px solid rgba(0,0,0,0.1);
+}
+.button.secondary-action:hover {
+  background-color: #e5e5e5;
+}
+
+.sub-links {
+  margin-bottom: 1.5rem;
+  min-height: 1.2em;
+}
+.sub-links a {
+  font-size: 0.85rem;
+  color: #777;
+  margin: 0 0.5rem;
+  text-decoration: underline;
+}
+.sub-links a:hover {
+  color: var(--deep-orange, #FF7043);
+}
+.source-code-link {
+  display: inline-block;
+  font-size: 0.9rem;
+  color: #333;
+  padding: 0.6rem 1.2rem;
+  background-color: #f0f0f0;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 10px;
+  margin-bottom: 0.4rem;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+.source-code-link .license {
+  font-size: 0.8em;
+  opacity: 0.7;
+  margin-left: 0.3em;
+}
+.source-code-link:hover {
+    background-color: #e5e5e5;
+}
+.hero .compatibility {
+  text-align: center;
+  margin-top: 0.2rem;
+  margin-bottom: 0;
+  font-size: 0.8rem; 
+  color: #888;
+}
+
+.features, .quick-start, .final-cta /* Added final-cta from sample */ {
+  padding: 2.5rem 0;
+  margin-bottom: 3.5rem;
+}
+.quick-start h2, .final-cta h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 3rem;
+  color: var(--dark-text);
+}
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  margin-bottom: 4rem;
+}
+.feature-item.reverse {
+  flex-direction: row-reverse;
+}
+.feature-image {
+  flex-shrink: 0;
+  width: 45%;
+  max-width: 450px;
+  height: auto;
+  border-radius: 12px;
+  background-color: #e0e0e0;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+}
+.feature-text {
+    padding: 0 1rem;
+}
+.feature-text h3 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--dark-text);
+}
+.feature-text p {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: #444;
+  max-width: 65ch;
+}
+
+.feature-list {
+    margin-top: 2rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.feature-list h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+.feature-list ul {
+    list-style: disc;
+    padding-left: 25px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 0.75rem 1.5rem;
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.6;
+}
+
+.quick-start ol {
+    list-style: decimal;
+    padding-left: 25px;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.8;
+    font-size: 1.05rem;
+}
+.quick-start li {
+    margin-bottom: 0.8rem;
+}
+
+.final-cta {
+    text-align: center;
+    padding: 3.5rem 1rem;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 25px rgba(0,0,0,0.07);
+}
+.final-cta p {
+    font-size: 1.15rem;
+    color: #666;
+    margin-bottom: 2.5rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+}
+
+
+.app-icon-main {
+  width: 128px; 
+  height: 128px;
+  margin: 0 auto 1rem;
+  display: block;
+  border-radius: 22px;
+  object-fit: contain;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .feature-item, .feature-item.reverse {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+  }
+  .feature-image {
+    width: 80%;
+    max-width: 350px;
+    margin-bottom: 1.5rem;
+  }
+  .feature-text h3 {
+    font-size: 1.4rem;
+  }
+  .feature-text {
+      padding: 0;
+  }
+  .tagline {
+      max-width: 90%;
+      font-size: 1.15rem;
+  }
+  .hero h1 {
+      font-size: 2.4rem;
+  }
+  .feature-list ul {
+      grid-template-columns: 1fr;
+  }
+  /* Ensure text group items stack */
+  .feature-text-group {
+      flex-direction: column;
+      align-items: center;
+  }
+  .feature-text-group > .feature-text-item {
+       max-width: 90%;
+  }
+} 
+
+/* New section for large hero showcase image */
+.hero-showcase {
+    margin-top: -1.5rem;
+    margin-bottom: 3.5rem;
+    text-align: center;
+}
+.hero-showcase img {
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    display: inline-block;
+}
+
+/* New container for side-by-side text-only features */
+.feature-text-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+    margin-bottom: 4rem;
+    justify-content: center;
+}
+
+.feature-text-group > .feature-text-item {
+    flex: 1;
+    min-width: 280px;
+    max-width: 48%;
+}
+
+/* Reuse feature-text styling, ensure title exists */
+.feature-text-group > .feature-text-item h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--dark-text);
+}
+.feature-text-group > .feature-text-item p,
+.feature-text-group > .feature-text-item ul {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #444;
+    max-width: none;
+}
+.feature-text-group > .feature-text-item ul {
+    list-style: disc;
+    padding-left: 20px;
+    display: block;
+    grid-template-columns: unset;
+    gap: 0.5rem;
+} 

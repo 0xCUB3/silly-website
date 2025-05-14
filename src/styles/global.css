@@ -1,0 +1,146 @@
+:root {
+  --orange-cream: #FFF0E5; /* Light creamy background */
+  --deep-orange: #FF7043; /* Vibrant orange for accents */
+  --dark-text: #333;      /* Dark text for readability */
+  --light-gray: #f8f8f8;  /* Light gray for subtle backgrounds */
+  --border-color: #ddd;  /* Border color */
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-serif: Georgia, serif;
+  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --border-radius: 8px;
+}
+
+/* Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Apply border to html for overall frame */
+html {
+  font-size: 16px; /* Base font size */
+  scroll-behavior: smooth;
+  border: 5px solid rgba(137, 221, 255, 0.5); /* Subtle cyan border */
+  min-height: 100vh; /* Ensure border covers full height */
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #FDF5EC; /* Slightly adjusted warm cream */
+  color: var(--dark-text);
+  line-height: 1.6;
+  margin: 0; /* Ensure no default body margin */
+  padding: 1rem; /* Reduced padding slightly */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: flex; /* Use flexbox for centering */
+  flex-direction: column;
+  min-height: calc(100vh - 10px); /* Adjust for html border */
+  align-items: center; /* Center flex items horizontally */
+}
+
+main {
+  padding: 0;
+  /* width: 100%; Remove this if present */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans);
+  color: var(--dark-text);
+  margin-bottom: 1rem; /* Increased bottom margin slightly */
+  line-height: 1.3;
+  font-weight: 600; 
+  text-align: center; /* Center headings */
+}
+
+h1 {
+  font-size: 2.8rem; /* Slightly larger */
+  margin-bottom: 0.5rem; /* Less space below h1 */
+}
+
+h2 {
+  font-size: 2rem;
+  margin-top: 2.5rem; /* Add space above h2 */
+}
+
+p {
+  margin-bottom: 1.5rem; /* More space between paragraphs */
+  max-width: 65ch; /* Limit paragraph width for readability */
+  text-align: center; /* Center paragraphs */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+a {
+  color: var(--deep-orange);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover,
+a:focus {
+  color: #e65100; /* Darker orange on hover */
+  text-decoration: underline;
+}
+
+/* Basic Button Styling */
+button,
+.button { /* Add .button class for link styling */
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background-color: var(--deep-orange);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+button:hover,
+.button:hover {
+  background-color: #e65100; /* Darker orange */
+  transform: translateY(-1px); /* Subtle lift */
+}
+
+button:active,
+.button:active {
+  transform: translateY(0px);
+}
+
+/* Basic Form Styling */
+input,
+textarea,
+select {
+  font-family: var(--font-sans);
+  padding: 0.8rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--deep-orange);
+  box-shadow: 0 0 0 2px rgba(255, 112, 67, 0.2); /* Subtle focus ring */
+}
+
+/* Centering for standard page content */
+.page-content {
+  width: 100%;
+  max-width: 900px; /* Or your preferred content width */
+  margin: 0 auto; /* Center the block */
+  padding: 0 1rem; /* Add some horizontal padding */
+  flex-grow: 1; /* Helps push footer down */
+}

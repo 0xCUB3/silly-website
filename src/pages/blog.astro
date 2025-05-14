@@ -1,0 +1,78 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+// Assume you fetch or define posts here. Example:
+const allPosts = [
+  { url: '/posts/post-1', title: 'My First Blog Post', date: '2024-07-20' },
+  { url: '/posts/post-2', title: 'Learning Astro Layouts', date: '2024-07-21' },
+  { url: '/posts/post-3', title: 'Styling with CSS Variables', date: '2024-07-22' },
+];
+
+const pageTitle = "My Astro Blog";
+const pageDescription = "Read my latest thoughts and articles.";
+---
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <div class="page-content">
+    <h1>My Blog</h1>
+    <p>Welcome to my blog! Here are some recent posts.</p>
+    <ul class="post-list">
+      {allPosts.map((post) => (
+        <li>
+          <a href={post.url} class="post-link">
+            <span class="post-title">{post.title}</span>
+            <span class="post-date">{new Date(post.date).toLocaleDateString('en-us', { year:'numeric', month:'short', day:'numeric'})}</span>
+          </a>
+        </li>
+      ))}
+        </ul>
+  </div>
+</BaseLayout>
+
+<style>
+  .post-list {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+  }
+  .post-list li {
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1.5rem;
+    transition: background-color 0.2s ease;
+  }
+  .post-list li:last-child {
+     border-bottom: none;
+     margin-bottom: 0;
+     padding-bottom: 0;
+  }
+
+  .post-link {
+    display: block;
+    text-decoration: none;
+    color: var(--dark-text);
+    padding: 1rem 1.5rem;
+    border-radius: var(--border-radius);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+
+  .post-link:hover {
+    background-color: var(--orange-cream);
+    transform: translateX(5px);
+  }
+
+  .post-title {
+    display: block;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    color: var(--dark-text);
+  }
+
+  .post-link:hover .post-title {
+     color: var(--deep-orange);
+  }
+
+  .post-date {
+    font-size: 0.9rem;
+    color: #666;
+  }
+</style>

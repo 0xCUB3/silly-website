@@ -1,0 +1,70 @@
+---
+---
+<nav>
+<a href="/">Home</a>
+  <a href="/about">About</a>
+  <a href="/blog">Blog</a>
+</nav>
+
+<style>
+  nav {
+    display: flex;
+    justify-content: center; /* Center navigation items */
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: var(--orange-cream);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: var(--box-shadow);
+    position: sticky; /* Make nav sticky */
+    top: 0;
+    z-index: 1000; /* Ensure it's above other content */
+    width: 100%;
+  }
+
+  nav a {
+    color: var(--dark-text);
+    text-decoration: none;
+    padding: 0.75rem 1.5rem; /* Increase padding for a more 'Apple-like' feel */
+    margin: 0 0.5rem;
+    border-radius: var(--border-radius); /* Softer rounded corners */
+    font-weight: 500; /* Medium weight for nav links */
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    position: relative; /* For pseudo-element animation */
+  }
+
+  nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 5px; /* Position underline slightly above the bottom */
+    left: 50%;
+    background-color: var(--deep-orange);
+    transition: width 0.3s ease, left 0.3s ease;
+  }
+
+  nav a:hover,
+  nav a:focus {
+    background-color: rgba(255, 112, 67, 0.1); /* Very subtle orange background on hover */
+    color: var(--deep-orange);
+    transform: translateY(-2px); /* Slight lift effect */
+  }
+
+  nav a:hover::after,
+  nav a:focus::after {
+    width: calc(100% - 3rem); /* Adjust width considering padding */
+    left: 1.5rem; /* Adjust left position considering padding */
+  }
+
+  /* Style for the active page link - you'll need JS to set this dynamically or use Astro's features */
+  nav a[aria-current="page"] {
+    color: var(--deep-orange);
+    font-weight: 600; /* Bolder active link */
+  }
+
+  nav a[aria-current="page"]::after {
+      width: calc(100% - 3rem);
+      left: 1.5rem;
+      background-color: var(--deep-orange);
+  }
+</style>
