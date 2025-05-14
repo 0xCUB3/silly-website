@@ -1,0 +1,195 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const pageTitle = "Contact Me";
+const pageDescription = "Get in touch with Alexander Skula.";
+---
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <div class="page-content contact-page">
+    <header class="page-header animated-element" data-animation="fadeInUpShort" data-animation-delay="0.1s">
+      <h1>{pageTitle}</h1>
+      <p>Have a question or want to work together? Feel free to reach out!</p>
+    </header>
+
+    <form 
+      action="https://formspree.io/f/mbloqlna" 
+      method="POST"
+      class="contact-form animated-element" 
+      data-animation="fadeInUpShort" 
+      data-animation-delay="0.3s"
+    >
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Your Email</label>
+        <input type="email" id="email" name="_replyto" required> 
+      </div>
+
+      <div class="form-group">
+        <label for="subject">Subject</label>
+        <input type="text" id="subject" name="subject" required>
+      </div>
+
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="6" required></textarea>
+      </div>
+
+      <button type="submit" class="submit-button">Send Message</button>
+    </form>
+
+    <p class="formspree-info animated-element" data-animation="fadeInUpShort" data-animation-delay="0.5s">
+      This form is powered by <a href="https://formspree.io" target="_blank" rel="noopener noreferrer">Formspree</a>. 
+    </p>
+  </div>
+</BaseLayout>
+
+<style>
+  .contact-page {
+    max-width: 700px;
+    margin: 0 auto;
+    padding-bottom: 4rem;
+  }
+
+  .page-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .page-header h1 {
+    font-size: 2.8rem;
+    margin-bottom: 0.5rem;
+    color: var(--dark-text);
+  }
+
+  .page-header p {
+    font-size: 1.1rem;
+    color: var(--medium-text);
+    max-width: 50ch;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .contact-form {
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 2.5rem;
+    border-radius: var(--border-radius-large);
+    box-shadow: var(--shadow-medium);
+    border: 1px solid var(--border-color-subtle);
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--dark-text);
+    font-size: 0.95rem;
+  }
+
+  .form-group input[type="text"],
+  .form-group input[type="email"],
+  .form-group textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    background-color: var(--background-color);
+    color: var(--dark-text);
+    font-size: 1rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .form-group input[type="text"]:focus,
+  .form-group input[type="email"]:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--deep-orange);
+    box-shadow: 0 0 0 3px rgba(var(--deep-orange-rgb), 0.2);
+  }
+
+  .form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .submit-button {
+    display: inline-block;
+    padding: 0.9rem 1.8rem;
+    background-color: var(--deep-orange);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    box-shadow: var(--shadow-small);
+  }
+
+  .submit-button:hover {
+    background-color: var(--orange-cream);
+    color: var(--deep-orange);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+  }
+
+  .submit-button:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-small);
+  }
+
+  .formspree-info {
+    text-align: center;
+    margin-top: 2.5rem;
+    font-size: 0.9rem;
+    color: var(--medium-text);
+  }
+
+  .formspree-info a {
+    color: var(--deep-orange);
+    text-decoration: none;
+  }
+  .formspree-info a:hover {
+    text-decoration: underline;
+  }
+
+  /* Animation setup from index.astro (if needed for new elements) */
+  .animated-element {
+    opacity: 0; /* Start hidden */
+  }
+  @keyframes fadeInUpShort {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const animatedElements = document.querySelectorAll('.animated-element');
+    animatedElements.forEach(el => {
+      const element = el as HTMLElement;
+      
+      const animationName = element.dataset.animation;
+      const animationDelay = element.dataset.animationDelay || '0s';
+      const animationDuration = element.dataset.animationDuration || '0.7s';
+      const animationTiming = element.dataset.animationTiming || 'ease-out';
+      const animationFillMode = element.dataset.animationFillMode || 'forwards';
+
+      if (animationName) {
+        element.style.animation = `${animationName} ${animationDuration} ${animationTiming} ${animationDelay} ${animationFillMode}`;
+      }
+    });
+  });
+</script> 

@@ -1,0 +1,146 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const pageTitle = "404 - Page Not Found";
+const pageDescription = "Oops! It looks like this page doesn't exist.";
+---
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <div class="page-content not-found-page">
+    <div class="content-wrapper animated-element" data-animation="scaleIn" data-animation-delay="0.1s">
+      <div class="emoji-art animated-element" data-animation="fadeIn" data-animation-delay="0.3s">🚧🤔🚧</div>
+      <h1 class="animated-element" data-animation="fadeInUpShort" data-animation-delay="0.5s">404</h1>
+      <h2 class="animated-element" data-animation="fadeInUpShort" data-animation-delay="0.7s">Oops! Page Not Found.</h2>
+      <p class="animated-element" data-animation="fadeInUpShort" data-animation-delay="0.9s">
+        It seems the page you're looking for has taken a little detour or doesn't exist.
+        Maybe it's on a coffee break? ☕
+      </p>
+      <a href="/" class="home-button animated-element" data-animation="fadeInUpShort" data-animation-delay="1.1s">
+        Go Back Home
+      </a>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .not-found-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 70vh; /* Ensures content is vertically centered if page is short */
+    padding: 2rem;
+  }
+
+  .content-wrapper {
+    max-width: 600px;
+    padding: 3rem;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: var(--border-radius-large);
+    box-shadow: var(--shadow-medium);
+    border: 1px solid var(--border-color-subtle);
+  }
+
+  .emoji-art {
+    font-size: 4rem; /* Makes emojis larger */
+    margin-bottom: 1.5rem;
+    line-height: 1;
+  }
+
+  .not-found-page h1 {
+    font-size: 6rem; /* Large 404 text */
+    color: var(--deep-orange);
+    margin-bottom: 0.5rem;
+    line-height: 1;
+  }
+
+  .not-found-page h2 {
+    font-size: 1.8rem;
+    color: var(--dark-text);
+    margin-bottom: 1.5rem;
+  }
+
+  .not-found-page p {
+    font-size: 1.1rem;
+    color: var(--medium-text);
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+  }
+
+  .home-button {
+    display: inline-block;
+    padding: 0.9rem 1.8rem;
+    background-color: var(--deep-orange);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: var(--shadow-small);
+  }
+
+  .home-button:hover {
+    background-color: var(--orange-cream);
+    color: var(--deep-orange);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-medium);
+  }
+
+  .home-button:active {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-inset); /* Subtle press effect */
+  }
+
+  /* Basic Animations (can reuse from global or define here if specific) */
+  .animated-element {
+    opacity: 0; /* Start hidden */
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes fadeInUpShort {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+</style>
+
+<script>
+  // Re-using the animation script logic (similar to contact and index pages)
+  document.addEventListener('DOMContentLoaded', () => {
+    const animatedElements = document.querySelectorAll('.animated-element');
+    animatedElements.forEach(el => {
+      const element = el as HTMLElement;
+      
+      const animationName = element.dataset.animation;
+      const animationDelay = element.dataset.animationDelay || '0s';
+      const animationDuration = element.dataset.animationDuration || '0.7s';
+      const animationTiming = element.dataset.animationTiming || 'ease-out'; // Changed to ease-out for smoother feel
+      const animationFillMode = element.dataset.animationFillMode || 'forwards';
+
+      if (animationName) {
+        element.style.animation = `${animationName} ${animationDuration} ${animationTiming} ${animationDelay} ${animationFillMode}`;
+      }
+    });
+  });
+</script> 
