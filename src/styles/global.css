@@ -32,6 +32,12 @@ html {
   min-height: 100vh; /* Ensure border covers full height */
 }
 
+@media (max-width: 768px) {
+  html {
+    border-width: 2px; /* Thinner border on mobile */
+  }
+}
+
 @keyframes subtleGradientShift {
   0% { background-position: 0% 0%; }
   50% { background-position: 100% 100%; }

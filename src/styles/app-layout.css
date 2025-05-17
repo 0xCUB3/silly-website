@@ -690,6 +690,52 @@ body.app-layout {
   .hero-showcase {
     margin: var(--spacing-lg) auto;
   }
+
+  /* Mobile adjustments for hero section in app layout */
+  .hero {
+    padding-left: var(--spacing-sm); /* Add some padding to hero itself */
+    padding-right: var(--spacing-sm);
+  }
+
+  .hero h1 {
+    font-size: 2.2rem; /* Adjust hero title size */
+  }
+
+  .hero .tagline {
+    font-size: 1.1rem; /* Adjust tagline size */
+    max-width: 90%; /* Allow tagline to use more width */
+  }
+
+  .action-buttons {
+    flex-direction: column; /* Stack buttons vertically */
+    align-items: stretch;   /* Make buttons take full width of container */
+    gap: 0.75rem;         /* Reduce gap for vertical stacking */
+    width: 100%;          /* Ensure action-buttons container takes available width */
+    padding: 0 var(--spacing-sm); /* Add padding to the action-buttons container */
+    box-sizing: border-box;
+  }
+
+  .action-buttons > .button {
+    min-width: 0; /* Remove min-width */
+    width: 100%;  /* Make buttons full-width */
+    margin: 0; /* Reset any horizontal margins if they existed */
+    font-size: 1rem; /* Slightly smaller font for buttons on mobile */
+    padding-left: 1rem; /* Adjust padding for smaller screens */
+    padding-right: 1rem;
+  }
+  
+  /* If using animated icons, adjust text positioning or padding on mobile if needed */
+  .action-buttons > .button.button--animated-icon {
+    padding-left: 3rem; /* Ensure space for icon */
+  }
+  .action-buttons > .button.button--animated-icon:hover {
+    padding-left: 1rem; /* Adjust hover padding for icon exit */
+    padding-right: 2.75rem; /* Adjust hover padding for arrow */
+  }
+
+  .app-landing-content {
+    padding: 0; /* Remove padding from app-landing-content if .hero and .action-buttons have their own */
+  }
 } 
 
 /* Universal Animated Icon Button Styles */
