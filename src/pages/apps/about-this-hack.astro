@@ -10,17 +10,14 @@ const appDetails = {
   sourceCodeUrl: "https://github.com/2009-Nissan-Cube/About-This-Hack",
   license: "MIT",
   compatibility: "macOS 10.12 Sierra and newer",
-  showcaseImageUrl: "https://private-user-images.githubusercontent.com/94565160/344421824-26457de7-881b-4d4e-ab36-ee77a825da64.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDcwNzMzMzMsIm5iZiI6MTc0NzA3MzAzMywicGF0aCI6Ii85NDU2NTE2MC8zNDQ0MjE4MjQtMjY0NTdkZTctODgxYi00ZDRlLWFiMzYtZWU3N2E4MjVkYTY0LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTA1MTIlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwNTEyVDE4MDM1M1omWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTYxNjg2ODAyZTY4NTg0NzNiYWZmY2FiZGIzODMyYmQ0MDgwM2NlZGNiZmZkNjkxODA4ZjY2ZGQwNmI1MzVmYTImWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.oJK9y4gqU7gYPDF_Z7cezYT5xjN0HXodbSZWuACWtqM", 
-  displaysImageUrl: "/images/ath-displays.png",
-  storageImageUrl: "/images/ath-storage.png",
-  supportImageUrl: "/images/ath-support.png",
+  showcaseImageUrl: "https://github.com/0xCUB3/About-This-Hack/assets/94565160/26457de7-881b-4d4e-ab36-ee77a825da64"
 };
 ---
 
 <AppLayout 
   appName={appDetails.appName} 
   appIcon={appDetails.appIcon} 
-  logoSrc="/your-main-logo.svg"
+  logoSrc="/icons/logo.svg"
   pageTitle={`${appDetails.appName} - ${appDetails.tagline}`}>
 
   <div class="app-landing-content">
@@ -30,25 +27,19 @@ const appDetails = {
       <p class="tagline">{appDetails.tagline}</p>
       
       <div class="action-buttons">
-        <a href={appDetails.downloadUrl} target="_blank" rel="noopener noreferrer" class="button primary-action">
-          Download <span class="version">{appDetails.version}</span>
+        <a href={appDetails.downloadUrl} target="_blank" rel="noopener noreferrer" class="button primary-action button--animated-icon button--icon-apple">
+          <span class="button-text">Download <span class="version">{appDetails.version}</span></span>
         </a>
-        <!-- Can add source button here if desired using secondary style -->
-        <!-- <a href={appDetails.sourceCodeUrl} target="_blank" rel="noopener noreferrer" class="button secondary-action">View Source</a> -->
-      </div>
-      <div class="sub-links">
-         <!-- Can add changelog link here if available -->
+        <a href={appDetails.sourceCodeUrl} target="_blank" rel="noopener noreferrer" class="button source-code-link button--animated-icon button--icon-github">
+          <span class="button-text">Source code <span class="license">Licensed under {appDetails.license}</span></span>
+        </a>
       </div>
       
-      <a href={appDetails.sourceCodeUrl} target="_blank" rel="noopener noreferrer" class="source-code-link">
-        Source code <span class="license">Licensed under {appDetails.license}</span>
-      </a>
       <p class="compatibility">Compatible with {appDetails.compatibility}</p>
     </section>
 
-    <!-- Hero Showcase Image -->
     <section class="hero-showcase">
-        <img src={appDetails.showcaseImageUrl} alt="About This Hack Overview Screenshot" /> 
+        <img src={appDetails.showcaseImageUrl} alt="About This Hack Overview Screenshot" loading="lazy" /> 
     </section>
 
     <section class="features">  
@@ -56,19 +47,18 @@ const appDetails = {
         <div class="feature-text-item">
           <h3>Remember this?</h3>
           <p>A throwback to the (better) About This Mac view from pre-Ventura. Get instant access to essential system specs, including your computer model, OS version, and processor details. Hackintosh users will appreciate the Clover or OpenCore bootloader version display.</p>
-          </div>
+        </div>
 
         <div class="feature-text-item">
-          <h3>More Features:</h3>
+          <h3>More Features</h3>
           <ul>
               <li>Visualize up to three of your connected displays with their respective resolutions</li>
-              <li>Get a clear picture of your startup disk, including name, available space, and disk type, all presented with an easy-to-read usage bar</li>
-              <li>Access a list of support resources for both Mac and Hackintosh users.</li>
+              <li>Get a clear picture of your startup disk, including name, available space, and disk type</li>
+              <li>Access a list of support resources for both Mac and Hackintosh users</li>
+              <li>Clean, native macOS design that feels right at home</li>
           </ul>
         </div>
       </div>  
     </section>
-
   </div>
-
 </AppLayout> 

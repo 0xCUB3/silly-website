@@ -31,34 +31,27 @@ const displayTitle = pageTitle || `${appName} - Alexander Skula`;
     <meta name="generator" content={Astro.generator} />
     <title>{displayTitle}</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-
     <style is:global>
-        /* Styles specific to the AppLayout */
+        /* Base styles */
         body.app-layout {
-            background-color: var(--light-gray, #f8f8f8); /* Match reference background */
-            font-family: var(--font-sans); /* Use the global font stack */
+            margin: 0;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            padding: 0 1rem 1rem; /* No top padding, allow header to be at edge */
         }
 
         .app-header {
             width: 100%;
-            max-width: 1024px; /* Consistent max-width */
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.5rem 0; /* Vertical padding */
-            margin-bottom: 2rem;
         }
 
         .app-header .logo img {
-            height: 30px; /* Adjust logo size as needed */
-            display: block;
+            height: 24px;
+            width: auto;
         }
 
         .app-header nav ul {
@@ -66,93 +59,71 @@ const displayTitle = pageTitle || `${appName} - Alexander Skula`;
             padding: 0;
             margin: 0;
             display: flex;
-            gap: 1.5rem;
-        }
-
-        .app-header nav a {
-            text-decoration: none;
-            color: #555; /* Subdued link color */
-            font-size: 0.95rem;
-            font-weight: 600;
-            transition: color 0.2s ease;
-        }
-        .app-header nav a:hover {
-            color: var(--deep-orange);
+            gap: 2rem;
         }
 
         .app-content {
             width: 100%;
-            max-width: 1024px; /* Consistent max-width */
-            flex-grow: 1; /* Ensure content pushes footer down */
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-grow: 1;
+            padding: 0 2rem;
         }
 
-        /* Adjust global styles slightly for this layout */
-        body.app-layout h1,
-        body.app-layout h2,
-        body.app-layout h3,
-        body.app-layout h4,
-        body.app-layout h5,
-        body.app-layout h6,
-        body.app-layout p {
-           text-align: left; /* Override global center-align for app pages */
-           max-width: none; /* Override global max-width for paragraphs */
+        @media (max-width: 768px) {
+            .app-content {
+                padding: 0 1rem;
+            }
+            
+            .app-header {
+                padding: 1rem;
+            }
+            
+            .app-header nav ul {
+                gap: 1rem;
+            }
         }
-         body.app-layout p {
-             max-width: 75ch; /* Set a reasonable max-width for readability */
-             margin-left: 0; /* Reset margin */
-             margin-right: 0; /* Reset margin */
-         }
-         body.app-layout h1, body.app-layout h2 {
-              text-align: center; /* Keep main headings centered */
-               margin-left: auto;
-               margin-right: auto;
-         }
-
-
     </style>
     
-    {/* Add animation keyframes */}
     <style is:global>
         @keyframes fadeInUp { 
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeIn { 
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from { 
+                opacity: 0; 
+                transform: translateY(10px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
         }
         
-        /* Initial states & Animation applications */
-        .app-icon-main, .hero h1, .hero .tagline, .hero .action-buttons a, 
-        .hero .sub-links, .hero .source-code-link, .hero .compatibility {
-            opacity: 0; /* Default to hidden */
+        .app-icon-main, .hero h1, .hero .tagline, 
+        .hero .action-buttons a, .hero .sub-links, 
+        .hero .source-code-link, .hero .compatibility {
+            opacity: 0;
         }
 
         body.is-loaded .app-icon-main {
-            animation: fadeInUp 0.5s ease-out 0.1s forwards;
+            animation: fadeInUp 0.4s ease-out 0.1s forwards;
         }
         body.is-loaded .hero h1 {
-            animation: fadeInUp 0.5s ease-out 0.2s forwards;
+            animation: fadeInUp 0.4s ease-out 0.2s forwards;
         }
         body.is-loaded .hero .tagline {
-            animation: fadeInUp 0.5s ease-out 0.3s forwards;
+            animation: fadeInUp 0.4s ease-out 0.3s forwards;
         }
-        body.is-loaded .hero .action-buttons a:nth-child(1) {
-            animation: fadeInUp 0.5s ease-out 0.4s forwards;
-        }
-        body.is-loaded .hero .action-buttons a:nth-child(2) {
-            animation: fadeInUp 0.5s ease-out 0.5s forwards;
+        body.is-loaded .hero .action-buttons a {
+            animation: fadeInUp 0.4s ease-out 0.4s forwards;
         }
         body.is-loaded .hero .sub-links {
-             animation: fadeIn 0.5s ease-out 0.6s forwards;
+            animation: fadeInUp 0.4s ease-out 0.5s forwards;
         }
         body.is-loaded .hero .source-code-link {
-             animation: fadeIn 0.5s ease-out 0.7s forwards;
+            animation: fadeInUp 0.4s ease-out 0.6s forwards;
         }
         body.is-loaded .hero .compatibility {
-             animation: fadeIn 0.5s ease-out 0.8s forwards;
+            animation: fadeInUp 0.4s ease-out 0.7s forwards;
         }
-
     </style>
 </head>
 <body class="app-layout">
@@ -180,12 +151,11 @@ const displayTitle = pageTitle || `${appName} - Alexander Skula`;
     <Footer /> <!-- Use the existing footer component -->
 
     <script>
-      // Add a class to trigger animations after a short delay
-      document.addEventListener('DOMContentLoaded', () => {
-          setTimeout(() => {
-              document.body.classList.add('is-loaded');
-          }, 100); // Small delay to allow elements to render
-      });
+        document.addEventListener('DOMContentLoaded', () => {
+            requestAnimationFrame(() => {
+                document.body.classList.add('is-loaded');
+            });
+        });
     </script>
 </body>
 </html> 

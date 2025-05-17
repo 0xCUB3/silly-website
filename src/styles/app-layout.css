@@ -1,26 +1,242 @@
+/* CSS Variables for consistent theming */
+:root {
+  --background-page: #fff0df; /* UPDATED to precise darker cream */
+  --text-title-headings: #292425; /* Titles and large text */
+  --text-body-prose: #3d3d3d;     /* Softer black for paragraph text */
+  --text-on-dark-button: #fff0df; /* Text for primary (dark) button */
+  --text-support-meta: #b59889;   /* Tiny support/meta text */
+
+  --text-primary: var(--text-title-headings); /* REPLACED - Now for titles */
+  --text-secondary: var(--text-body-prose);   /* REPLACED - Now for general body text */
+
+  --button-primary: #000000;    /* Pure black for primary button background */
+  --button-secondary-bg-new: #F7F2ED;
+  --button-secondary-bg-new-hover: #F0EAE4;
+  --light-gray-hover: #ededed; /* ADDED for social icon button hover */
+  --border-radius-pill: 1.625rem;
+  --border-radius-lg: 16px;
+  --border-radius-md: 12px;
+  --border-radius-sm: 8px;
+  --shadow-subtle: 0 2px 8px rgba(0, 0, 0, 0.05);
+  --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --max-width-content: 1000px;
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  /* Removed --background-cream and --button-secondary as they are superseded */
+}
+
+@keyframes subtleGradientShift {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+  100% { background-position: 0% 0%; }
+}
+
+/* Reset body background and typography */
+body.app-layout {
+  background-color: var(--background-page); /* Fallback */
+  background: radial-gradient(ellipse at top, #fff4e8 10%, var(--background-page) 70%); /* Subtle gradient with sharper transition */
+  background-size: 150% 150%; /* Make gradient larger than viewport for animation */
+  animation: subtleGradientShift 45s ease-in-out infinite alternate; /* Apply animation */
+  color: var(--text-body-prose); /* UPDATED to new body prose color */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "kern";
+  text-rendering: optimizeLegibility;
+}
+
+/* Header styling */
+.app-header {
+    background-color: transparent;
+    padding: 1.5rem 2rem;
+}
+
+.app-header nav a {
+    color: var(--text-body-prose); /* Use body prose for nav links, or a specific nav link color */
+    font-weight: 500;
+}
+
+.app-header nav a:hover {
+    color: var(--text-title-headings); /* Darken on hover to title color */
+}
+
+/* Hero section updates */
+.hero {
+    text-align: center;
+    padding: var(--spacing-xl) 0;
+    margin-bottom: var(--spacing-xl);
+    border-bottom: none;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--text-title-headings);
+    margin-bottom: var(--spacing-xs);
+    line-height: 1.1;
+}
+
+.hero .tagline {
+    font-size: 1.35rem;
+    color: var(--text-body-prose); /* UPDATED */
+    max-width: 600px;
+    margin: 0 auto var(--spacing-lg);
+    line-height: 1.4;
+    font-weight: 400;
+}
+
+/* Button styling updates */
+.button {
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius-sm);
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.button:hover {
+    text-decoration: none; /* Ensure no underline on hover for base button */
+}
+
+.button.primary-action {
+    background-color: var(--button-primary);
+    color: var(--text-on-dark-button); /* UPDATED */
+    border: none;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+}
+
+.button.primary-action:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+    text-decoration: none; /* Add here too for thoroughness */
+}
+
+.button.secondary-action {
+    background-color: var(--button-secondary-bg-new);
+    color: var(--text-title-headings); /* Text on light button should be dark */
+    border: none; /* Ensuring no border if it was missed */
+}
+
+/* App icon styling */
+.app-icon-main {
+    width: 96px;
+    height: 96px;
+    margin-bottom: 1.5rem;
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-subtle);
+}
+
+/* Source code link styling */
+.source-code-link {
+    background-color: var(--button-secondary-bg-new);
+    color: var(--text-title-headings); /* UPDATED - text on light button is dark */
+    border-radius: var(--border-radius-sm); /* General, overridden by pill in action-buttons */
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    margin-top: var(--spacing-md);
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.source-code-link:hover {
+    background-color: var(--button-secondary-bg-new-hover);
+    transform: translateY(-1px);
+    text-decoration: none;
+}
+
+/* Feature sections */
+.hero-showcase {
+    margin: var(--spacing-xl) auto;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: floatIn 0.8s ease-out 0.6s forwards;
+}
+
+@keyframes floatIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-showcase img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12),
+                0 3px 8px rgba(0, 0, 0, 0.06);
+    transition: all 0.5s ease;
+}
+
+.hero-showcase img:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15),
+                0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.feature-item {
+    margin: 4rem 0;
+}
+
+.feature-text h3 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--text-title-headings);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.feature-text p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--text-body-prose); /* UPDATED */
+}
+
+/* Compatibility text */
+.compatibility {
+    color: var(--text-support-meta); /* UPDATED */
+    font-size: 0.9rem;
+    margin-top: 1.25rem;
+}
+
 /* Styles for app landing page content sections */
 
 .app-landing-content {
-  padding: 1rem 0;
+  max-width: var(--max-width-content);
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
 }
 
 .hero {
   text-align: center;
-  padding: 3rem 0;
-  /* border-bottom: 1px solid var(--border-color, #eee); */
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-  margin-bottom: 3.5rem;
+  padding: var(--spacing-xl) 0;
+  margin-bottom: var(--spacing-xl);
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 .hero > * {
-  margin-bottom: 1.2rem;
+  margin-bottom: 0.75rem;
 }
 .hero h1 {
   font-size: 2.8rem;
   margin-bottom: 0.3rem;
-  color: var(--dark-text);
+  color: var(--text-title-headings);
+  font-weight: 800;
 }
 .tagline {
   font-size: 1.25rem;
@@ -33,44 +249,57 @@
 .action-buttons {
   display: flex;
   justify-content: center;
+  align-items: baseline;
   gap: 1rem;
   margin-bottom: 0.8rem;
 }
 
 /* General button styling within app layout context */
 .button {
-  padding: 0.8rem 1.8rem; 
+  /* Base padding - vertical is key, horizontal will be managed by specific types or animation class */
+  padding: 0.8rem 1.5rem; /* Default vertical and horizontal padding */
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.2;
   text-decoration: none;
-  border-radius: 10px;
+  border-radius: 10px; /* Consider using var(--border-radius-sm) for consistency */
   font-weight: 600;
-  transition: all 0.2s ease;
+  /* transition: all 0.2s ease; -- This might conflict with more specific transitions */
   font-size: 0.95rem;
-  display: inline-block;
-  border: 1px solid transparent;
   cursor: pointer;
 }
-.button .version, .button .price {
-  font-size: 0.8em;
-  opacity: 0.8;
-  margin-left: 0.3em;
-}
+
 .button.primary-action {
-  background-color: var(--deep-orange, #FF7043);
+  background-color: var(--button-primary); /* Corrected to use new variable */
   color: white;
-  border-color: var(--deep-orange, #FF7043);
+  border: none; /* Removed border-color as it's border:none now */
+  /* font-weight: 600; -- Already in .button */
+  letter-spacing: -0.01em;
+  text-decoration: none; /* Add here too for thoroughness */
 }
+
 .button.primary-action:hover {
-  background-color: #e65100;
-  border-color: #e65100;
+  opacity: 0.9;
+  transform: translateY(-1px); /* This hover is for non-animated primary buttons */
+  /* For animated buttons, the .button--animated-icon:hover will handle padding/transform of text */
+  text-decoration: none; /* Add here too for thoroughness */
 }
+
 .button.primary-action.large {
-    font-size: 1.1rem;
-    padding: 1rem 2rem;
-    border-radius: 12px;
+    font-size: 1.15rem;
+    /* padding: 0.875rem 2.25rem; -- REMOVED specific horizontal padding here */
+    /* Let vertical padding be distinct if needed, horizontal handled by .button or .button--animated-icon */
+    padding-top: 0.875rem;
+    padding-bottom: 0.875rem;
+    border-radius: 12px; /* var(--border-radius-md) */
+    /* font-weight: 500; -- This might conflict with .button's font-weight */
 }
+
 .button.secondary-action {
   background-color: #f0f0f0;
-  color: var(--dark-text, #333);
+  color: var(--text-title-headings);
   border: 1px solid rgba(0,0,0,0.1);
 }
 .button.secondary-action:hover {
@@ -83,18 +312,18 @@
 }
 .sub-links a {
   font-size: 0.85rem;
-  color: #777;
+  color: var(--text-support-meta); /* UPDATED */
   margin: 0 0.5rem;
   text-decoration: underline;
 }
 .sub-links a:hover {
-  color: var(--deep-orange, #FF7043);
+  color: var(--text-title-headings); /* Darken on hover */
 }
 .source-code-link {
   display: inline-block;
-  font-size: 0.9rem;
-  color: #333;
-  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  color: var(--text-title-headings);
+  padding: 0.625rem 1.25rem;
   background-color: #f0f0f0;
   border: 1px solid rgba(0,0,0,0.1);
   border-radius: 10px;
@@ -119,19 +348,19 @@
 }
 
 .features, .quick-start, .final-cta /* Added final-cta from sample */ {
-  padding: 2.5rem 0;
+  padding: var(--spacing-xl) 0;
   margin-bottom: 3.5rem;
 }
 .quick-start h2, .final-cta h2 {
   text-align: center;
   font-size: 2rem;
   margin-bottom: 3rem;
-  color: var(--dark-text);
+  color: var(--text-title-headings); /* UPDATED */
 }
 .feature-item {
   display: flex;
   align-items: center;
-  gap: 2.5rem;
+  gap: var(--spacing-lg);
   margin-bottom: 4rem;
 }
 .feature-item.reverse {
@@ -153,7 +382,7 @@
   font-size: 1.6rem;
   font-weight: 600;
   margin-bottom: 0.75rem;
-  color: var(--dark-text);
+  color: var(--text-title-headings);
 }
 .feature-text p {
   font-size: 1.05rem;
@@ -238,17 +467,17 @@
     margin-bottom: 1.5rem;
   }
   .feature-text h3 {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
   }
   .feature-text {
       padding: 0;
   }
   .tagline {
       max-width: 90%;
-      font-size: 1.15rem;
+      font-size: 1.2rem;
   }
   .hero h1 {
-      font-size: 2.4rem;
+      font-size: 2.5rem;
   }
   .feature-list ul {
       grid-template-columns: 1fr;
@@ -260,6 +489,17 @@
   }
   .feature-text-group > .feature-text-item {
        max-width: 90%;
+  }
+  .app-landing-content {
+    padding: 0 var(--spacing-sm);
+  }
+  .hero .tagline {
+    font-size: 1.2rem;
+    padding: 0 var(--spacing-sm);
+  }
+  .feature-text-group {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
   }
 } 
 
@@ -278,39 +518,437 @@
     display: inline-block;
 }
 
-/* New container for side-by-side text-only features */
+/* Update feature section layout */
+.features {
+  padding: var(--spacing-xl) 0;
+  display: grid;
+  gap: var(--spacing-lg);
+}
+
+/* Widget-style feature items */
 .feature-text-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2.5rem;
-    margin-bottom: 4rem;
-    justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--spacing-sm);
+  margin: var(--spacing-xl) 0;
 }
 
-.feature-text-group > .feature-text-item {
-    flex: 1;
-    min-width: 280px;
-    max-width: 48%;
+.feature-text-item {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.4));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-lg);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06),
+              0 2px 4px rgba(0, 0, 0, 0.03);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
 }
 
-/* Reuse feature-text styling, ensure title exists */
-.feature-text-group > .feature-text-item h3 {
-    font-size: 1.4rem;
-    font-weight: 600;
-    margin-bottom: 0.75rem;
-    color: var(--dark-text);
+.feature-text-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0.8),
+    rgba(255, 255, 255, 0));
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
 }
-.feature-text-group > .feature-text-item p,
-.feature-text-group > .feature-text-item ul {
-    font-size: 1rem;
-    line-height: 1.7;
-    color: #444;
-    max-width: none;
+
+.feature-text-item:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08),
+              0 4px 8px rgba(0, 0, 0, 0.04);
+  border-color: rgba(255, 255, 255, 0.3);
 }
-.feature-text-group > .feature-text-item ul {
-    list-style: disc;
-    padding-left: 20px;
-    display: block;
-    grid-template-columns: unset;
-    gap: 0.5rem;
+
+.feature-text-item:hover::before {
+  transform: translateX(100%);
+}
+
+.feature-text-item h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--spacing-md);
+  color: var(--text-title-headings);
+  line-height: 1.2;
+}
+
+.feature-text-item p {
+  font-size: 1.1rem;
+  color: var(--text-body-prose);
+  line-height: 1.6;
+  margin-bottom: var(--spacing-md);
+}
+
+.feature-text-item ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.feature-text-item ul li {
+  position: relative;
+  padding-left: 2em;
+  margin-bottom: 1.2rem;
+  font-size: 1.1rem;
+  color: var(--text-body-prose);
+  line-height: 1.5;
+  transition: transform 0.3s ease;
+}
+
+.feature-text-item ul li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--text-title-headings);
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}
+
+.feature-text-item ul li:hover {
+  transform: translateX(4px);
+}
+
+.feature-text-item ul li:hover::before {
+  opacity: 1;
+  transform: translateX(2px);
+}
+
+/* Large feature items with enhanced styling */
+.feature-item {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.4));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-xl);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-xl);
+  align-items: center;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06),
+              0 2px 4px rgba(0, 0, 0, 0.03);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-item:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08),
+              0 4px 8px rgba(0, 0, 0, 0.04);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.feature-item .feature-image {
+  width: 100%;
+  height: auto;
+  border-radius: var(--border-radius-md);
+  transition: transform 0.5s ease;
+}
+
+.feature-item:hover .feature-image {
+  transform: scale(1.03);
+}
+
+.feature-item .feature-text {
+  padding: var(--spacing-md);
+}
+
+.feature-item .feature-text h3 {
+  font-size: 1.75rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.feature-item .feature-text p {
+  font-size: 1.1rem;
+  color: var(--text-body-prose);
+  line-height: 1.6;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .feature-item {
+    grid-template-columns: 1fr;
+    padding: var(--spacing-md);
+    gap: var(--spacing-lg);
+  }
+
+  .feature-text-group {
+    gap: var(--spacing-md);
+  }
+
+  .hero-showcase {
+    margin: var(--spacing-lg) auto;
+  }
+} 
+
+/* Universal Animated Icon Button Styles */
+
+/* Base for any button that will have the icon animation */
+.button--animated-icon {
+  /* Icon 1.25rem wide, pos 1.5rem from left. Desired gap 0.75rem. */
+  /* So, 1.5 + 1.25 + 0.75 = 3.5rem */
+  padding-left: 3.5rem;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition-property: padding-left, padding-right, transform;
+  transition-duration: 0.35s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  justify-content: flex-start;
+}
+
+/* The text wrapper inside the button */
+.button--animated-icon .button-text {
+  display: inline-block;
+  transform: translateX(0);
+  transition: transform 0.35s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+/* Common style for the icon pseudo-element */
+.button--animated-icon::before {
+  content: '';
+  position: absolute;
+  left: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1.25rem;
+  height: 1.25rem;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 1;
+  filter: blur(0px);
+  transition-property: transform, opacity, filter;
+  transition-duration: 0.35s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Specific class for Apple icon */
+.button--icon-apple::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M19.37 7.648c-.114.088-2.11 1.213-2.11 3.715 0 2.894 2.54 3.918 2.616 3.944-.011.062-.403 1.402-1.34 2.767-.834 1.201-1.706 2.4-3.032 2.4s-1.667-.77-3.198-.77c-1.492 0-2.022.796-3.235.796-1.214 0-2.06-1.112-3.033-2.477C4.911 16.42 4 13.93 4 11.566c0-3.791 2.465-5.802 4.891-5.802 1.29 0 2.364.847 3.173.847.77 0 1.972-.897 3.438-.897.556 0 2.553.05 3.867 1.934Zm-4.564-3.54c.607-.719 1.036-1.718 1.036-2.716 0-.138-.012-.279-.037-.392-.987.037-2.161.657-2.87 1.478-.555.632-1.074 1.63-1.074 2.643 0 .152.026.304.037.353.063.011.164.025.266.025.885 0 1.998-.593 2.642-1.39Z'/%3E%3C/svg%3E");
+}
+
+/* Specific class for GitHub icon */
+.button--icon-github::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='currentColor'%3E%3Cpath d='M16 0.395c-8.836 0-16 7.163-16 16 0 7.071 4.584 13.068 10.938 15.181 0.8 0.147 1.094-0.347 1.094-0.77 0-0.381-0.014-1.622-0.022-2.979-4.451 0.968-5.391-1.888-5.391-1.888-0.728-1.849-1.776-2.341-1.776-2.341-1.453-0.993 0.11-0.973 0.11-0.973 1.606 0.113 2.451 1.649 2.451 1.649 1.427 2.446 3.743 1.739 4.656 1.33 0.144-1.034 0.559-1.74 1.016-2.14-3.554-0.404-7.29-1.777-7.29-7.907 0-1.747 0.625-3.174 1.649-4.298-0.165-0.403-0.715-2.033 0.155-4.234 0 0 1.344-0.43 4.401 1.64 1.276-0.355 2.645-0.532 4.005-0.539 1.36 0.007 2.729 0.184 4.005 0.539 3.057-2.070 4.401-1.64 4.401-1.64 0.87 2.201 0.32 3.831 0.155 4.234 1.024 1.124 1.649 2.551 1.649 4.298 0 6.145-3.736 7.498-7.29 7.907 0.575 0.497 1.087 1.472 1.087 2.966 0 2.141-0.019 3.864-0.019 4.391 0 0.426 0.293 0.923 1.094 0.77 6.354-2.113 10.938-8.11 10.938-15.181 0-8.837-7.164-16-16-16z'/%3E%3C/svg%3E");
+  background-position: center 40%; /* Nudge up SVG content if it's rendering low - may need adjustment */
+}
+
+/* Common style for the arrow pseudo-element */
+.button--animated-icon::after {
+  content: '→';
+  position: absolute;
+  right: 1.25rem;
+  top: 50%;
+  transform: translateY(-50%) translateX(1.25rem) scale(0.8);
+  opacity: 0;
+  font-size: 1.2em;
+  transition-property: transform, opacity;
+  transition-duration: 0.35s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-delay: 0.05s;
+}
+
+/* Hover state for the animated icon button */
+.button--animated-icon:hover {
+  padding-left: 1.5rem;
+  padding-right: 3.25rem;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-medium), 0 2px 4px rgba(0,0,0,0.1);
+  text-decoration: none;
+}
+
+.button--animated-icon:hover .button-text {
+  transform: translateX(-0.25rem);
+}
+
+.button--animated-icon:hover::before {
+  transform: translateY(-50%) translateX(-120%) scale(0.7);
+  opacity: 0;
+  filter: blur(4px);
+}
+
+.button--animated-icon:hover::after {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0) scale(1);
+}
+
+/* Ensure .large variant also respects icon animation padding changes on hover */
+/* Base .large styles will handle initial font size and vertical padding */
+.button.large.button--animated-icon:hover {
+  /* The padding-left and padding-right from .button--animated-icon:hover will apply */
+  /* No specific overrides needed here unless .large fundamentally changes horizontal animation space */
+}
+
+/* Ensure base styles for primary-action and source-code-link are preserved but don't conflict with animation */
+.button.primary-action {
+  /* Styles like background-color, color, border remain */
+  background-color: var(--button-primary);
+  color: white;
+  border: none; /* Example */
+  text-decoration: none; /* Add here too for thoroughness */
+}
+
+.button.source-code-link {
+  /* Styles like background-color, color, border remain */
+  background-color: var(--button-secondary-bg-new);
+  color: var(--text-title-headings);
+  border: none; /* Example */
+  text-decoration: none; /* Add here too for thoroughness */
+}
+.button.source-code-link:hover {
+  background-color: var(--button-secondary-bg-new-hover);
+  text-decoration: none; /* Add here too for thoroughness */
+}
+
+/* Styles for buttons directly inside .action-buttons to ensure consistent sizing */
+.action-buttons > .button {
+  font-size: 1.1rem; /* Consistent font size */
+  font-weight: 600; /* Consistent font weight */
+  height: 3.25rem; /* Increased height (52px) */
+  padding-top: 0;
+  padding-bottom: 0;
+  min-width: 220px; /* Set a common minimum width */
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  border: none;
+  border-radius: var(--border-radius-pill); /* UPDATED for pill shape */
+  box-shadow: var(--shadow-medium); /* Apple-like drop shadow */
+  transition-property: padding-left, padding-right, transform, box-shadow; /* Added box-shadow to transition */
+  transition-duration: 0.35s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  /* Horizontal padding will be further influenced by .button--animated-icon if present */
+}
+
+/* Remove conflicting size/padding for large variant when inside action-buttons */
+.action-buttons > .button.large {
+  padding-top: 0;
+  padding-bottom: 0;
+  height: 3.25rem; /* Ensure height consistency */
+  border-radius: var(--border-radius-pill); /* UPDATED for pill shape */
+}
+
+/* Adjust .button.primary-action.large ONLY outside of .action-buttons if needed */
+.button.primary-action.large:not(.action-buttons > .button) {
+  font-size: 1.15rem;
+  padding-top: 0.875rem;
+  padding-bottom: 0.875rem;
+  height: 3.25rem; /* Match new height for consistency */
+  border-radius: var(--border-radius-pill); /* UPDATED for pill shape */
+  box-shadow: var(--shadow-medium); /* Match new default */
+}
+
+/* Ensure source-code-link in action buttons gets consistent styling */
+.action-buttons > .button.source-code-link {
+  height: 3.25rem; /* Consistent height */
+  border-radius: var(--border-radius-pill); /* UPDATED for pill shape */
+  box-shadow: var(--shadow-medium); /* Ensure shadow is applied */
+  /* Color and background will come from its own class, .button.source-code-link */
+}
+
+/* Animated icon specific paddings will still apply and override base horizontal padding */
+.button--animated-icon {
+  padding-left: 3.5rem; /* For icon space */
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  /* Transitions are now on .action-buttons > .button */
+}
+
+/* Fix vertical alignment of icons */
+.button--animated-icon::before {
+  content: '';
+  position: absolute;
+  left: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1.25rem;
+  height: 1.25rem;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 1;
+  filter: blur(0px);
+  transition-property: transform, opacity, filter;
+  transition-duration: 0.35s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.button--animated-icon:hover {
+  padding-left: 1.5rem;
+  padding-right: 3.25rem; /* For arrow space */
+  transform: translateY(-2px); /* Slightly more lift with shadow */
+  box-shadow: var(--shadow-medium), 0 2px 4px rgba(0,0,0,0.1); /* Enhance shadow on hover */
+  text-decoration: none;
+}
+
+/* Specific styling for the text content within the buttons in action-buttons */
+.action-buttons > .button .button-text {
+  display: flex; /* Use flex to manage alignment of main text and sub-text */
+  align-items: baseline; /* Use baseline to align text properly */
+  justify-content: center;
+  width: 100%; /* Allow text to fill available space */
+  /* Don't set margins or padding here that could throw off centering */
+}
+
+.action-buttons > .button .button-text .version,
+.action-buttons > .button .button-text .license {
+  font-size: 0.8em; /* Relative to parent button's font-size */
+  opacity: 0.8;
+  margin-left: 0.5em;
+  white-space: nowrap; /* Prevent wrapping of version/license */
+  /* Fix vertical alignment with main text */
+  position: relative;
+  top: 0.05em; /* Tiny adjustment to match baseline better */
+}
+
+/* 
+  The following .icon-button-social styles are assumed to be 
+  intended for app-layout specific overrides or definitions. 
+  Ensure variables like --border-radius-apple-default, --shadow-medium-global, 
+  --light-gray are accessible from global.css or define them here too if needed.
+*/
+.icon-button-social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem; /* Consistent padding */
+  background-color: var(--light-gray); /* From global.css */
+  color: var(--text-title-headings); /* For SVG fill via currentColor */
+  border: none;
+  border-radius: var(--border-radius-apple-default); /* From global.css, should be 12px */
+  box-shadow: var(--shadow-medium-global); /* From global.css */
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  /* Removed static transform: translateY(-1px); from base state */
+}
+
+.icon-button-social svg {
+  width: 20px; /* Example size, adjust as needed */
+  height: 20px;
+  fill: currentColor;
+}
+
+.icon-button-social:hover,
+.icon-button-social:focus {
+  background-color: var(--light-gray-hover); /* Defined in this file's :root */
+  color: var(--text-title-headings); /* Ensure icon color persists */
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-medium-global), 0 2px 4px rgba(0,0,0,0.1); /* From global.css & enhanced */
+  text-decoration: none;
 } 

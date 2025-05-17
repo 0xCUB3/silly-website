@@ -16,7 +16,7 @@ const appDetails = {
 <AppLayout 
   appName={appDetails.appName} 
   appIcon={appDetails.appIcon} 
-  logoSrc="/your-main-logo.svg"
+  logoSrc="/icons/wBlock.png"
   pageTitle={`${appDetails.appName} - ${appDetails.tagline}`}>
 
   <div class="app-landing-content">
@@ -26,18 +26,14 @@ const appDetails = {
       <p class="tagline">{appDetails.tagline}</p>
       
       <div class="action-buttons">
-        <a href={appDetails.testflightUrl} target="_blank" rel="noopener noreferrer" class="button primary-action">
-          Join TestFlight <span class="version">{appDetails.version}</span>
+        <a href={appDetails.testflightUrl} target="_blank" rel="noopener noreferrer" class="button primary-action button--animated-icon button--icon-apple">
+          <span class="button-text">Join TestFlight <span class="version">{appDetails.version}</span></span>
+        </a>
+        <a href={appDetails.sourceCodeUrl} target="_blank" rel="noopener noreferrer" class="button source-code-link button--animated-icon button--icon-github">
+          <span class="button-text">Source code <span class="license">Licensed under {appDetails.license}</span></span>
         </a>
       </div>
-      <div class="sub-links">
-         <!-- Can add changelog link here if desired -->
-         <!-- <a href="#">Changelog</a> -->
-      </div>
       
-      <a href={appDetails.sourceCodeUrl} target="_blank" rel="noopener noreferrer" class="source-code-link">
-        Source code <span class="license">Licensed under {appDetails.license}</span>
-      </a>
       <p class="compatibility">Compatible with {appDetails.compatibility}</p>
     </section>
 
@@ -67,13 +63,12 @@ const appDetails = {
 
           <!-- Feature 2: More Features List (No Image) -->
           <div class="feature-text-item">
-            <h3>More Features:</h3>
+            <h3>More Features</h3>
             <ul>
                 <li>Custom Filter Support</li>
                 <li>Minimal RAM Usage</li>
                 <li>Intuitive category-based filter management</li>
                 <li>Individual filter list toggling</li>
-                <li>Automatic updates for filter lists (coming soon!)</li>
                 <li>Detailed logging for troubleshooting</li>
             </ul>
           </div>

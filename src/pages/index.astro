@@ -168,16 +168,18 @@ const apps = [
     align-items: center;
     gap: 0.6rem; 
     padding: 0.7rem 1.4rem;
-    border-radius: var(--border-radius);
+    border-radius: var(--border-radius-apple-default);
     text-decoration: none;
     font-weight: 500;
     font-size: 1rem;
     transition: all 0.25s ease;
     border: 1px solid transparent;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+    box-shadow: var(--shadow-medium-global);
   }
   .social-button svg {
     opacity: 0.8;
+    width: 16px;
+    height: 16px;
   }
   .social-button.github {
     background-color: #333;
@@ -188,7 +190,7 @@ const apps = [
     background-color: #555;
     border-color: #555;
     transform: translateY(-3px);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    box-shadow: var(--shadow-medium-global), 0 4px 10px rgba(0,0,0,0.15);
   }
   .social-button.linkedin {
     background-color: #0077B5;
@@ -199,7 +201,7 @@ const apps = [
     background-color: #005e92;
     border-color: #005e92;
     transform: translateY(-3px);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    box-shadow: var(--shadow-medium-global), 0 4px 10px rgba(0,0,0,0.15);
   }
   .social-button:active {
     transform: translateY(-1px);

@@ -1,13 +1,18 @@
 :root {
-  --orange-cream: #FFF0E5; /* Light creamy background */
-  --deep-orange: #FF7043; /* Vibrant orange for accents */
-  --dark-text: #333;      /* Dark text for readability */
-  --light-gray: #f8f8f8;  /* Light gray for subtle backgrounds */
-  --border-color: #ddd;  /* Border color */
+  --background-page: #fff0df; /* UPDATED - Light creamy background */
+  --text-title-headings: #292425; /* UPDATED - Dark text for readability */
+  --text-body-prose: #3d3d3d;     /* ADDED - Softer black for paragraph text */
+  --text-on-dark-button: #fff0df; /* ADDED - Text for primary (dark) button, if we use black buttons globally */
+  --text-support-meta: #b59889;   /* ADDED - Tiny support/meta text */
+  
+  --deep-orange: #FF7043; /* Vibrant orange for accents - RETAINED */
+  --light-gray: #f8f8f8;  /* Light gray for subtle backgrounds - RETAINED */
+  --border-color: #ddd;  /* Border color - RETAINED */
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-serif: Georgia, serif;
-  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  --border-radius: 8px;
+  --shadow-medium-global: 0 4px 12px rgba(0, 0, 0, 0.08); /* UPDATED from --box-shadow */
+  --border-radius-pill-global: 1.625rem; /* UPDATED from --border-radius */
+  --border-radius-apple-default: 12px; /* ADDED for standard Apple-like corners */
 }
 
 /* Reset */
@@ -23,14 +28,23 @@
 html {
   font-size: 16px; /* Base font size */
   scroll-behavior: smooth;
-  border: 5px solid rgba(137, 221, 255, 0.5); /* Subtle cyan border */
+  border: 5px solid rgba(137, 221, 255, 0.5); /* Subtle cyan border - RETAINED for now, can be themed */
   min-height: 100vh; /* Ensure border covers full height */
+}
+
+@keyframes subtleGradientShift {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+  100% { background-position: 0% 0%; }
 }
 
 body {
   font-family: var(--font-sans);
-  background-color: #FDF5EC; /* Slightly adjusted warm cream */
-  color: var(--dark-text);
+  background-color: var(--background-page); /* Fallback */
+  background: radial-gradient(ellipse at top, #fff4e8 10%, var(--background-page) 70%); /* Subtle gradient with sharper transition */
+  background-size: 150% 150%; /* Make gradient larger than viewport for animation */
+  animation: subtleGradientShift 45s ease-in-out infinite alternate; /* Apply animation */
+  color: var(--text-body-prose); /* UPDATED */
   line-height: 1.6;
   margin: 0; /* Ensure no default body margin */
   padding: 1rem; /* Reduced padding slightly */
@@ -44,70 +58,73 @@ body {
 
 main {
   padding: 0;
-  /* width: 100%; Remove this if present */
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-sans);
-  color: var(--dark-text);
-  margin-bottom: 1rem; /* Increased bottom margin slightly */
+  color: var(--text-title-headings); /* UPDATED */
+  margin-bottom: 1rem; 
   line-height: 1.3;
   font-weight: 600; 
-  text-align: center; /* Center headings */
+  text-align: center; 
 }
 
 h1 {
-  font-size: 2.8rem; /* Slightly larger */
-  margin-bottom: 0.5rem; /* Less space below h1 */
+  font-size: 2.8rem; 
+  font-weight: 800; /* Make global H1 bolder like app hero */
+  margin-bottom: 0.5rem; 
 }
 
 h2 {
   font-size: 2rem;
-  margin-top: 2.5rem; /* Add space above h2 */
+  margin-top: 2.5rem; 
 }
 
 p {
-  margin-bottom: 1.5rem; /* More space between paragraphs */
-  max-width: 65ch; /* Limit paragraph width for readability */
-  text-align: center; /* Center paragraphs */
+  margin-bottom: 1.5rem; 
+  max-width: 65ch; 
+  text-align: center; 
   margin-left: auto;
   margin-right: auto;
+  /* color will be var(--text-body-prose) inherited from body */
 }
 
 a {
-  color: var(--deep-orange);
+  color: var(--deep-orange); /* RETAINED - using accent color */
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 a:hover,
 a:focus {
-  color: #e65100; /* Darker orange on hover */
+  color: #e65100; /* Darker orange on hover - RETAINED */
   text-decoration: underline;
 }
 
 /* Basic Button Styling */
 button,
-.button { /* Add .button class for link styling */
+.button { 
   display: inline-block;
   padding: 0.8rem 1.5rem;
-  background-color: var(--deep-orange);
-  color: white;
+  background-color: var(--deep-orange); /* RETAINED orange button theme */
+  color: white; /* RETAINED white text on orange */
   border: none;
-  border-radius: var(--border-radius);
+  border-radius: var(--border-radius-pill-global); /* UPDATED to pill shape */
   font-family: var(--font-sans);
   font-size: 1rem;
   font-weight: 600;
   text-align: center;
   text-decoration: none;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.1s ease;
+  transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.3s ease; /* Added box-shadow transition */
+  box-shadow: var(--shadow-medium-global); /* ADDED shadow */
 }
 
 button:hover,
 .button:hover {
-  background-color: #e65100; /* Darker orange */
-  transform: translateY(-1px); /* Subtle lift */
+  background-color: #e65100; /* Darker orange - RETAINED */
+  transform: translateY(-1px); 
+  box-shadow: var(--shadow-medium-global), 0 2px 4px rgba(0,0,0,0.1); /* ENHANCED shadow on hover */
 }
 
 button:active,
@@ -115,14 +132,14 @@ button:active,
   transform: translateY(0px);
 }
 
-/* Basic Form Styling */
+/* Basic Form Styling - colors retained for now */
 input,
 textarea,
 select {
   font-family: var(--font-sans);
   padding: 0.8rem;
   border: 1px solid var(--border-color);
-  border-radius: var(--border-radius);
+  border-radius: var(--border-radius-pill-global); /* Use pill shape for forms too */
   font-size: 1rem;
   width: 100%;
   margin-bottom: 1rem;
@@ -133,14 +150,44 @@ textarea:focus,
 select:focus {
   outline: none;
   border-color: var(--deep-orange);
-  box-shadow: 0 0 0 2px rgba(255, 112, 67, 0.2); /* Subtle focus ring */
+  box-shadow: 0 0 0 2px rgba(255, 112, 67, 0.2); 
 }
 
 /* Centering for standard page content */
 .page-content {
   width: 100%;
-  max-width: 900px; /* Or your preferred content width */
-  margin: 0 auto; /* Center the block */
-  padding: 0 1rem; /* Add some horizontal padding */
-  flex-grow: 1; /* Helps push footer down */
+  max-width: 900px; 
+  margin: 0 auto; 
+  padding: 0 1rem; 
+  flex-grow: 1; 
+}
+
+/* Styling for Social Icon Buttons (e.g., GitHub, LinkedIn) */
+.icon-button-social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem; /* Adjust padding for icon size */
+  background-color: var(--light-gray);
+  color: var(--text-title-headings); /* For SVG fill via currentColor */
+  border: none;
+  border-radius: var(--border-radius-apple-default);
+  box-shadow: var(--shadow-medium-global);
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.icon-button-social svg {
+  width: 20px; /* Example size, adjust as needed */
+  height: 20px;
+  fill: currentColor;
+}
+
+.icon-button-social:hover,
+.icon-button-social:focus {
+  background-color: #ededed; /* Slightly darker gray on hover */
+  color: var(--text-title-headings); /* Ensure icon color persists */
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-medium-global), 0 2px 4px rgba(0,0,0,0.1);
+  text-decoration: none;
 }

@@ -133,7 +133,9 @@ const { title, description = "My Awesome Astro Website" } = Astro.props;
         </nav>
     </header>
     
-    <slot /> { /* Direct slot, pages manage their own centering/layout */ }
+    <main class="page-content">
+      <slot />
+    </main>
 
     <Footer /> { /* Always render footer */ }
     
