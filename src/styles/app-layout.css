@@ -720,17 +720,69 @@ body.app-layout {
     width: 100%;  /* Make buttons full-width */
     margin: 0; /* Reset any horizontal margins if they existed */
     font-size: 1rem; /* Slightly smaller font for buttons on mobile */
-    padding-left: 1rem; /* Adjust padding for smaller screens */
+    justify-content: center; /* Center all content (icon and text block) */
+    padding-left: 1rem; /* General padding for mobile */
     padding-right: 1rem;
+    /* height and vertical padding are already set */
   }
   
-  /* If using animated icons, adjust text positioning or padding on mobile if needed */
-  .action-buttons > .button.button--animated-icon {
-    padding-left: 3rem; /* Ensure space for icon */
+  .action-buttons > .button:hover,
+  .action-buttons > .button:focus {
+    transform: none; /* Disable hover/focus transform */
+    box-shadow: var(--shadow-medium); /* Keep standard shadow, don't enhance */
   }
-  .action-buttons > .button.button--animated-icon:hover {
-    padding-left: 1rem; /* Adjust hover padding for icon exit */
-    padding-right: 2.75rem; /* Adjust hover padding for arrow */
+
+  /* Simplify .button--animated-icon for mobile */
+  .action-buttons > .button.button--animated-icon {
+    padding-left: 1rem; /* Reset specific animation padding */
+    padding-right: 1rem;
+    justify-content: center; /* Ensure this overrides any base justify-content: flex-start */
+  }
+
+  .action-buttons > .button.button--animated-icon::before {
+    /* Static icon display for mobile: position left of the text */
+    /* display: inline-block; /* Make it part of the flow for centering */
+    /* position: static; /* Override absolute positioning */
+    /* transform: none; /* Reset any transforms */
+    /* margin-right: 0.5em; /* Space between icon and text */
+    /* The above static positioning is hard with ::before. Let's keep it absolute but simple. */
+    left: 1rem; /* Position from the button's left padding */
+    transform: translateY(-50%); /* Keep vertical centering */
+    opacity: 1 !important;
+    filter: none !important;
+    transition: none !important;
+  }
+  
+  .action-buttons > .button.button--animated-icon .button-text {
+    transform: none !important; 
+    transition: none !important;
+    margin-left: 1.75rem; /* Create space for the 1.25rem icon + 0.5rem gap, assuming icon is at left:1rem */
+                          /* This will push text to the right of icon, then button centers this group */
+  }
+
+  .action-buttons > .button.button--animated-icon::after {
+    display: none !important; /* Hide arrow */
+  }
+
+  /* Disable all hover effects for the animated button on mobile */
+  .action-buttons > .button.button--animated-icon:hover,
+  .action-buttons > .button.button--animated-icon:focus {
+    padding-left: 1rem; /* Keep padding consistent */
+    padding-right: 1rem;
+    transform: none !important; 
+    box-shadow: var(--shadow-medium) !important;
+  }
+  
+  .action-buttons > .button.button--animated-icon:hover::before,
+  .action-buttons > .button.button--animated-icon:focus::before {
+    transform: translateY(-50%) !important; /* Keep static position */
+    opacity: 1 !important; 
+    filter: none !important; 
+  }
+
+  .action-buttons > .button.button--animated-icon:hover .button-text,
+  .action-buttons > .button.button--animated-icon:focus .button-text {
+    transform: none !important;
   }
 
   .app-landing-content {
