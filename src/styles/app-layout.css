@@ -500,6 +500,7 @@ body.app-layout {
   .feature-text-group {
     grid-template-columns: 1fr;
     gap: var(--spacing-md);
+    justify-items: center;
   }
 } 
 
@@ -684,7 +685,9 @@ body.app-layout {
   }
 
   .feature-text-group {
+    grid-template-columns: 1fr;
     gap: var(--spacing-md);
+    justify-items: center;
   }
 
   .hero-showcase {
