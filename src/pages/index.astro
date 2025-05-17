@@ -306,6 +306,48 @@ const apps = [
     color: #333;
   }
 
+  @media (max-width: 768px) {
+    .name-main {
+      font-size: 3rem; /* Reduced from 4.5rem */
+      letter-spacing: 0.05em; /* Reduced from 0.08em */
+    }
+    .name-surname {
+      font-size: 2.5rem; /* Reduced from 4rem */
+      letter-spacing: 0.03em; /* Reduced from 0.05em */
+    }
+    .profile-hero {
+      padding-top: 3rem;
+      padding-bottom: 6rem; /* Increased bottom padding to give arrow space */
+      min-height: 0; /* Allow hero to shrink if content is less than 90vh on mobile */
+    }
+    .avatar {
+      width: 100px;
+      height: 100px;
+      margin-top: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .social-button {
+      padding: 0.6rem 1.2rem;
+      font-size: 0.9rem;
+    }
+    .scroll-arrow-link {
+      bottom: 1.5rem; /* Slightly raise arrow if padding isn't enough */
+    }
+  }
+
+  @media (max-width: 480px) {
+    .name-main {
+      font-size: 2.2rem; /* Further reduce for very small screens */
+      letter-spacing: 0.02em;
+    }
+    .name-surname {
+      font-size: 1.9rem; /* Further reduce */
+      letter-spacing: 0.01em;
+    }
+    .profile-description {
+        font-size: 1rem;
+    }
+  }
 </style>
 
 <script>
